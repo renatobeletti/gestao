@@ -1,6 +1,4 @@
 <?php
 echo time();
-echo '<br>6<br>';
+echo '<br>7<br>';
 echo phpinfo();
-
-
