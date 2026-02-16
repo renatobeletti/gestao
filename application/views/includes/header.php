@@ -42,40 +42,50 @@
 
         <div class="collapse navbar-collapse" id="sidebar-menu">
           <ul class="navbar-nav pt-lg-3">
-            <?php 
-            // Filtra os menus principais
-            $pais_principais = array_filter($menus, function($m) { return $m->pai_id == 0; });
-            
-            foreach ($pais_principais as $p): 
-                // Busca se esse pai tem filhos
-                $filhos = array_filter($menus, function($m) use ($p) { return $m->pai_id == $p->id; });
-                $tem_filhos = !empty($filhos);
-            ?>
-            
-            <li class="nav-item <?php echo $tem_filhos ? 'dropdown' : ''; ?>">
-                <a class="nav-link <?php echo $tem_filhos ? 'dropdown-toggle' : ''; ?>" 
-                   href="<?php echo $tem_filhos ? '#navbar-base-'.$p->id : base_url($p->url); ?>" 
-                   <?php echo $tem_filhos ? 'data-bs-toggle="dropdown" data-bs-auto-close="false" role="button"' : ''; ?>>
-                    <span class="nav-link-icon"><i class="<?php echo $p->icone; ?>"></i></span>
-                    <span class="nav-link-title"><?php echo $p->titulo; ?></span>
-                </a>
-                
-                <?php if ($tem_filhos): ?>
-                <div class="dropdown-menu">
-                    <div class="dropdown-menu-columns">
-                        <div class="dropdown-menu-column">
-                            <?php foreach ($filhos as $f): ?>
-                                <a class="dropdown-item" href="<?php echo base_url($f->url); ?>">
-                                    <i class="<?php echo $f->icone; ?> me-2"></i> <?php echo $f->titulo; ?>
-                                </a>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-                </div>
-                <?php endif; ?>
-            </li>
-            <?php endforeach; ?>
-        </ul>
+              <?php 
+              $current_url = $this->uri->segment(1); // Pega 'menus', 'configuracoes', etc.
+              
+              $pais_principais = array_filter($menus, function($m) { return $m->pai_id == 0; });
+              
+              foreach ($pais_principais as $p): 
+                  $filhos = array_filter($menus, function($m) use ($p) { return $m->pai_id == $p->id; });
+                  $tem_filhos = !empty($filhos);
+                  
+                  // Verifica se algum filho está ativo
+                  $filho_ativo = false;
+                  foreach($filhos as $f) {
+                      if($f->url == $current_url) $filho_ativo = true;
+                  }
+                  
+                  // O pai está ativo se ele mesmo for a URL ou se um filho for
+                  $pai_ativo = ($p->url == $current_url || $filho_ativo);
+              ?>
+              
+              <li class="nav-item <?php echo $tem_filhos ? 'dropdown' : ''; ?> <?php echo $pai_ativo ? 'active' : ''; ?>">
+                  <a class="nav-link <?php echo $tem_filhos ? 'dropdown-toggle' : ''; ?>" 
+                     href="<?php echo $tem_filhos ? '#navbar-menu-'.$p->id : base_url($p->url); ?>" 
+                     <?php echo $tem_filhos ? 'data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="'.($pai_ativo ? 'true' : 'false').'"' : ''; ?>>
+                      <span class="nav-link-icon"><i class="<?php echo $p->icone; ?> icon"></i></span>
+                      <span class="nav-link-title"><?php echo $p->titulo; ?></span>
+                  </a>
+                  
+                  <?php if ($tem_filhos): ?>
+                  <div class="dropdown-menu <?php echo $filho_ativo ? 'show' : ''; ?>">
+                      <div class="dropdown-menu-columns">
+                          <div class="dropdown-menu-column">
+                              <?php foreach ($filhos as $f): ?>
+                                  <a class="dropdown-item <?php echo ($f->url == $current_url) ? 'active' : ''; ?>" 
+                                     href="<?php echo base_url($f->url); ?>">
+                                      <i class="<?php echo $f->icone; ?> me-2"></i> <?php echo $f->titulo; ?>
+                                  </a>
+                              <?php endforeach; ?>
+                          </div>
+                      </div>
+                  </div>
+                  <?php endif; ?>
+              </li>
+              <?php endforeach; ?>
+          </ul>
         </div>
       </div>
     </aside>
