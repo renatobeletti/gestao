@@ -21,20 +21,21 @@
                   <div class="mt-1 small text-muted">Administrador</div>
                 </div>
               </a>
-              <div class="collapse navbar-collapse" id="navbar-menu">
-                <ul class="navbar-nav">
-                  <?php foreach ($menus as $m): ?>
-                  <li class="nav-item">
-                    <a class="nav-link" href="<?php echo base_url($m->url); ?>">
-                      <span class="nav-link-icon d-md-none d-lg-inline-block">
-                        <i class="<?php echo $m->icone; ?>"></i> </span>
-                      <span class="nav-link-title">
-                        <?php echo $m->titulo; ?>
-                      </span>
-                    </a>
-                  </li>
-                  <?php endforeach; ?>
-                </ul>
+              <div class="collapse navbar-collapse" id="sidebar-menu">
+                  <ul class="navbar-nav pt-lg-3">
+                      <?php foreach ($menus as $menu): ?>
+                      <li class="nav-item">
+                          <a class="nav-link" href="<?php echo base_url($menu->url); ?>">
+                              <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                  <i class="<?php echo $menu->icone; ?> icon"></i>
+                              </span>
+                              <span class="nav-link-title">
+                                  <?php echo $menu->titulo; ?>
+                              </span>
+                          </a>
+                      </li>
+                      <?php endforeach; ?>
+                  </ul>
               </div>
             </div>
           </div>
