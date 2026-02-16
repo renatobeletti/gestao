@@ -9,6 +9,11 @@ class Auth extends CI_Controller {
         $this->load->library('session');
     }
 
+    public function gerar_senha($senha) {
+        // Substitua '123456' pela senha que você quer usar
+        echo password_hash($senha, PASSWORD_BCRYPT);
+    }
+
     public function index() {
         $this->load->view('auth/login');
     }
