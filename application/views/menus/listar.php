@@ -28,18 +28,21 @@
                         ?>
                             <tr class="bg-light">
                                 <td><strong><?php echo $item->id; ?></strong></td>
-                                <td><strong><i class="<?php echo $item->icone; ?> me-2"></i> <?php echo $item->titulo; ?></strong></td>
+                                <td>
+                                    <strong><i class="<?php echo $item->icone; ?> me-2"></i> <?php echo $item->titulo; ?></strong>
+                                </td>
                                 <td><code>/<?php echo $item->url; ?></code></td>
-                                <td>Principal</td>
+                                <td><span class="badge bg-blue-lt">Principal</span></td>
+                                <td><?php echo $item->ordem; ?></td>
                                 <td class="text-end">
-                                    <div class="btn-list flex-nowrap">
-                                        <a href="<?php echo base_url('menus/editar/'.$sub->id); ?>" class="btn btn-white btn-sm">
-                                            Editar
+                                    <div class="btn-list flex-nowrap justify-content-end">
+                                        <a href="<?php echo base_url('menus/editar/'.$item->id); ?>" class="btn btn-warning btn-sm">
+                                            <i class="ti ti-edit icon"></i> Editar
                                         </a>
-                                        <a href="<?php echo base_url('menus/eliminar/'.$sub->id); ?>" 
+                                        <a href="<?php echo base_url('menus/eliminar/'.$item->id); ?>" 
                                            class="btn btn-danger btn-sm" 
-                                           onclick="return confirm('Deseja realmente excluir este menu? Isso removerá as permissões vinculadas.')">
-                                            Excluir
+                                           onclick="return confirm('Deseja realmente excluir este menu principal e suas permissões?')">
+                                            <i class="ti ti-trash icon"></i> Excluir
                                         </a>
                                     </div>
                                 </td>
@@ -49,12 +52,27 @@
                             $filhos_lista = array_filter($lista_menus, function($m) use ($item) { return $m->pai_id == $item->id; });
                             foreach($filhos_lista as $sub): 
                             ?>
-                            <tr>
-                                <td><?php echo $sub->id; ?></td>
-                                <td class="ps-4"> <i class="ti ti-corner-down-right text-muted me-2"></i> <?php echo $sub->titulo; ?></td>
-                                <td><code>/<?php echo $sub->url; ?></code></td>
-                                <td>Pai: <?php echo $item->titulo; ?></td>
-                            </tr>
+                                <tr>
+                                    <td><?php echo $sub->id; ?></td>
+                                    <td class="ps-4">
+                                        <i class="ti ti-corner-down-right text-muted me-2"></i> <?php echo $sub->titulo; ?>
+                                    </td>
+                                    <td><code>/<?php echo $sub->url; ?></code></td>
+                                    <td><span class="badge bg-gray-lt">Pai: <?php echo $item->titulo; ?></span></td>
+                                    <td><?php echo $sub->ordem; ?></td>
+                                    <td class="text-end">
+                                        <div class="btn-list flex-nowrap justify-content-end">
+                                            <a href="<?php echo base_url('menus/editar/'.$sub->id); ?>" class="btn btn-warning btn-sm">
+                                                <i class="ti ti-edit icon"></i> Editar
+                                            </a>
+                                            <a href="<?php echo base_url('menus/eliminar/'.$sub->id); ?>" 
+                                               class="btn btn-danger btn-sm" 
+                                               onclick="return confirm('Deseja realmente excluir este submenu?')">
+                                                <i class="ti ti-trash icon"></i> Excluir
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
                             <?php endforeach; ?>
                         <?php endforeach; ?>
                     </tbody>
