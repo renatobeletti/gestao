@@ -45,8 +45,17 @@
                                 <td class="ps-4"> <i class="ti ti-corner-down-right text-muted me-2"></i> <?php echo $sub->titulo; ?></td>
                                 <td><code>/<?php echo $sub->url; ?></code></td>
                                 <td>Pai: <?php echo $item->titulo; ?></td>
-                                <td>
-                                    <a href="<?php echo base_url('menus/editar/'.$sub->id); ?>" class="btn btn-sm btn-outline-warning">Editar</a>
+                                <td class="text-end">
+                                    <div class="btn-list flex-nowrap">
+                                        <a href="<?php echo base_url('menus/editar/'.$sub->id); ?>" class="btn btn-white btn-sm">
+                                            Editar
+                                        </a>
+                                        <a href="<?php echo base_url('menus/eliminar/'.$sub->id); ?>" 
+                                           class="btn btn-danger btn-sm" 
+                                           onclick="return confirm('Deseja realmente excluir este menu? Isso removerá as permissões vinculadas.')">
+                                            Excluir
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

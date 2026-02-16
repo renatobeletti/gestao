@@ -57,9 +57,15 @@
     </div>
 </div>
 
-
 <script>
 document.getElementById('icone-input').addEventListener('input', function() {
-    document.getElementById('icon-preview').className = this.value + ' icon';
+    let iconName = this.value.trim();
+    
+    // Se o usuário colou apenas "list", nós transformamos em "ti ti-list"
+    if (!iconName.startsWith('ti ')) {
+        iconName = 'ti ti-' + iconName;
+    }
+    
+    document.getElementById('icon-preview').className = iconName + ' icon';
 });
 </script>
