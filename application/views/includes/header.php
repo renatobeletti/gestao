@@ -7,20 +7,26 @@
     <link href="<?php echo base_url('assets/tabler/css/tabler.min.css'); ?>" rel="stylesheet"/>
     <style>
       :root {
+          /* Define a cor primária do Tabler (Botões, links, etc) */
           --tblr-primary: <?php echo $cores->cor_primaria ?? '#206bc4'; ?>;
-          --tblr-bg-surface: <?php echo $cores->cor_fundo_pagina ?? '#f4f6fa'; ?>;
       }
       
+      /* Aplica a cor no fundo do menu lateral */
       .navbar-vertical {
           background-color: <?php echo $cores->cor_sidebar ?? '#1b2431'; ?> !important;
+      }
+
+      /* Aplica a cor nos textos do menu lateral */
+      .navbar-vertical .nav-link, 
+      .navbar-vertical .navbar-brand, 
+      .navbar-vertical .nav-link-icon {
           color: <?php echo $cores->cor_texto_sidebar ?? '#ffffff'; ?> !important;
       }
 
-      .navbar-vertical .nav-link {
-          color: <?php echo $cores->cor_texto_sidebar ?? 'rgba(255,255,255,0.7)'; ?> !important;
+      /* Aplica a cor de fundo da página */
+      body {
+          background-color: <?php echo $cores->cor_fundo_pagina ?? '#f4f6fa'; ?> !important;
       }
-      
-      body { background-color: var(--tblr-bg-surface); }
   </style>
   </head>
   <body>
