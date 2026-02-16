@@ -7,38 +7,38 @@
     <link href="<?php echo base_url('assets/tabler/css/tabler.min.css'); ?>" rel="stylesheet"/>
   </head>
   <body>
-    <div class="page">
-      <header class="navbar navbar-expand-md navbar-light d-print-none">
-        <div class="container-xl">
-          <h1 class="navbar-brand navbar-brand-autodark d-none-auto pe-0 pe-md-3">
-            <a href=".">Gestão Beletti</a>
-          </h1>
-          <div class="navbar-nav flex-row order-md-last">
-            <div class="nav-item dropdown">
-              <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown">
-                <div class="d-none d-xl-block ps-2">
-                  <div><?php echo $nome_usuario; ?></div>
-                  <div class="mt-1 small text-muted">Administrador</div>
-                </div>
+    <aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <h1 class="navbar-brand navbar-brand-autodark">
+          <a href="<?php echo base_url('dashboard'); ?>">Gestão Beletti</a>
+        </h1>
+
+        <div class="collapse navbar-collapse" id="sidebar-menu">
+          <ul class="navbar-nav pt-lg-3">
+            <?php foreach ($menus as $m): ?>
+              <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url($m->url); ?>">
+                  <span class="nav-link-icon d-md-none d-lg-inline-block">
+                    <i class="<?php echo $m->icone; ?> icon"></i>
+                  </span>
+                  <span class="nav-link-title"><?php echo $m->titulo; ?></span>
+                </a>
+              </li>
+            <?php endforeach; ?>
+            
+            <li class="nav-item">
+              <a class="nav-link text-danger" href="<?php echo base_url('auth/logout'); ?>">
+                <span class="nav-link-icon"><i class="ti ti-logout icon"></i></span>
+                <span class="nav-link-title">Sair</span>
               </a>
-              <div class="collapse navbar-collapse" id="sidebar-menu">
-                  <ul class="navbar-nav pt-lg-3">
-                      <?php foreach ($menus as $menu): ?>
-                      <li class="nav-item">
-                          <a class="nav-link" href="<?php echo base_url($menu->url); ?>">
-                              <span class="nav-link-icon d-md-none d-lg-inline-block">
-                                  <i class="<?php echo $menu->icone; ?> icon"></i>
-                              </span>
-                              <span class="nav-link-title">
-                                  <?php echo $menu->titulo; ?>
-                              </span>
-                          </a>
-                      </li>
-                      <?php endforeach; ?>
-                  </ul>
-              </div>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
-      </header>
-      <div class="page-wrapper">
+      </div>
+    </aside>
+
+    <div class="page-wrapper">
