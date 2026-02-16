@@ -42,24 +42,40 @@
 
         <div class="collapse navbar-collapse" id="sidebar-menu">
           <ul class="navbar-nav pt-lg-3">
-            <?php foreach ($menus as $m): ?>
-              <li class="nav-item">
-                <a class="nav-link" href="<?php echo base_url($m->url); ?>">
-                  <span class="nav-link-icon d-md-none d-lg-inline-block">
-                    <i class="<?php echo $m->icone; ?> icon"></i>
-                  </span>
-                  <span class="nav-link-title"><?php echo $m->titulo; ?></span>
-                </a>
-              </li>
-            <?php endforeach; ?>
+            <?php 
+            // Filtra os menus principais
+            $pais_principais = array_filter($menus, function($m) { return $m->pai_id == 0; });
             
-            <li class="nav-item">
-              <a class="nav-link text-danger" href="<?php echo base_url('auth/logout'); ?>">
-                <span class="nav-link-icon"><i class="ti ti-logout icon"></i></span>
-                <span class="nav-link-title">Sair</span>
-              </a>
+            foreach ($pais_principais as $p): 
+                // Busca se esse pai tem filhos
+                $filhos = array_filter($menus, function($m) use ($p) { return $m->pai_id == $p->id; });
+                $tem_filhos = !empty($filhos);
+            ?>
+            
+            <li class="nav-item <?php echo $tem_filhos ? 'dropdown' : ''; ?>">
+                <a class="nav-link <?php echo $tem_filhos ? 'dropdown-toggle' : ''; ?>" 
+                   href="<?php echo $tem_filhos ? '#navbar-base-'.$p->id : base_url($p->url); ?>" 
+                   <?php echo $tem_filhos ? 'data-bs-toggle="dropdown" data-bs-auto-close="false" role="button"' : ''; ?>>
+                    <span class="nav-link-icon"><i class="<?php echo $p->icone; ?>"></i></span>
+                    <span class="nav-link-title"><?php echo $p->titulo; ?></span>
+                </a>
+                
+                <?php if ($tem_filhos): ?>
+                <div class="dropdown-menu">
+                    <div class="dropdown-menu-columns">
+                        <div class="dropdown-menu-column">
+                            <?php foreach ($filhos as $f): ?>
+                                <a class="dropdown-item" href="<?php echo base_url($f->url); ?>">
+                                    <i class="<?php echo $f->icone; ?> me-2"></i> <?php echo $f->titulo; ?>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+                <?php endif; ?>
             </li>
-          </ul>
+            <?php endforeach; ?>
+        </ul>
         </div>
       </div>
     </aside>

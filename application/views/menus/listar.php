@@ -22,18 +22,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($lista_menus as $item): ?>
-                        <tr>
-                            <td><?php echo $item->id; ?></td>
-                            <td><?php echo $item->titulo; ?></td>
-                            <td><?php echo $item->url; ?></td>
-                            <td><i class="<?php echo $item->icone; ?>"></i></td>
-                            <td><?php echo $item->ordem; ?></td>
-                            <td>
-                                <a href="<?php echo base_url('menus/editar/'.$item->id); ?>" class="btn btn-sm btn-warning">Editar</a>
-                                <button class="btn btn-sm btn-danger">Excluir</button>
-                            </td>
-                        </tr>
+                        <?php 
+                        $pais_lista = array_filter($lista_menus, function($m) { return $m->pai_id == 0; });
+                        foreach($pais_lista as $item): 
+                        ?>
+                            <tr class="bg-light">
+                                <td><strong><?php echo $item->id; ?></strong></td>
+                                <td><strong><i class="<?php echo $item->icone; ?> me-2"></i> <?php echo $item->titulo; ?></strong></td>
+                                <td><code>/<?php echo $item->url; ?></code></td>
+                                <td>Principal</td>
+                                <td>
+                                    <a href="<?php echo base_url('menus/editar/'.$item->id); ?>" class="btn btn-sm btn-warning">Editar</a>
+                                </td>
+                            </tr>
+
+                            <?php 
+                            $filhos_lista = array_filter($lista_menus, function($m) use ($item) { return $m->pai_id == $item->id; });
+                            foreach($filhos_lista as $sub): 
+                            ?>
+                            <tr>
+                                <td><?php echo $sub->id; ?></td>
+                                <td class="ps-4"> <i class="ti ti-corner-down-right text-muted me-2"></i> <?php echo $sub->titulo; ?></td>
+                                <td><code>/<?php echo $sub->url; ?></code></td>
+                                <td>Pai: <?php echo $item->titulo; ?></td>
+                                <td>
+                                    <a href="<?php echo base_url('menus/editar/'.$sub->id); ?>" class="btn btn-sm btn-outline-warning">Editar</a>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
