@@ -15,12 +15,12 @@ class Dashboard extends CI_Controller {
     }
 
     public function index() {
-        // 1. Pegar o ID do usuário que está na sessão
-        $user_id = $this->session->userdata('user_id');
+        // 1. Defina a variável capturando da sessão
+        $uid = $this->session->userdata('user_id');
         
         $data['titulo'] = "Painel de Controle";
         $data['nome_usuario'] = $this->session->userdata('nome');
-        $data['menus'] = $this->menu_model->obter_menu_usuario($user_id); // Busca os menus permitidos
+        $data['menus'] = $this->menu_model->obter_menu_usuario($uid); // Busca os menus permitidos
         $data['cores'] = $this->menu_model->obter_preferencias($uid); // Adicione isso!
         
         // Carregaremos a view em partes para facilitar a manutenção
