@@ -4,7 +4,9 @@
             <div class="card-header">
                 <h3 class="card-title">Menus do Sistema</h3>
                 <div class="card-actions">
-                    <a href="#" class="btn btn-primary"> + Novo Menu </a>
+                    <a href="<?php echo base_url('menus/adicionar'); ?>" class="btn btn-primary">
+                        <i class="ti ti-plus icon"></i> Novo Menu
+                    </a>
                 </div>
             </div>
             <div class="table-responsive">

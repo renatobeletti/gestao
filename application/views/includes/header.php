@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <title><?php echo $titulo; ?> - Gestão Beletti</title>
     <link href="<?php echo base_url('assets/tabler/css/tabler.min.css'); ?>" rel="stylesheet"/>
+    <style>
+        :root {
+            --tblr-primary: <?php echo $cores->cor_primaria ?? '#206bc4'; ?>;
+        }
+        .navbar-vertical {
+            background-color: <?php echo $cores->cor_sidebar ?? '#1b2431'; ?> !important;
+        }
+    </style>
   </head>
   <body>
     <aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
