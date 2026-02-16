@@ -11,18 +11,16 @@
         <div class="card card-md">
           <div class="card-body">
             <h2 class="h2 text-center mb-4">Acesse sua conta</h2>
-            <form action="<?php echo base_url('auth/login_process'); ?>" method="post" autocomplete="off">
-              <div class="mb-3">
-                <label class="form-label">E-mail</label>
-                <input type="email" class="form-control" placeholder="seu@email.com">
-              </div>
-              <div class="mb-2">
-                <label class="form-label">Senha</label>
-                <input type="password" class="form-control" placeholder="Sua senha">
-              </div>
-              <div class="form-footer">
+            <form action="<?php echo base_url('auth/login_process'); ?>" method="post">
+                <div class="mb-3">
+                    <label class="form-label">E-mail</label>
+                    <input type="email" name="email" class="form-control" required>
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Senha</label>
+                    <input type="password" name="password" class="form-control" required>
+                </div>
                 <button type="submit" class="btn btn-primary w-100">Entrar</button>
-              </div>
             </form>
           </div>
         </div>
