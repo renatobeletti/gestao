@@ -30,7 +30,7 @@
                             <td><i class="<?php echo $item->icone; ?>"></i></td>
                             <td><?php echo $item->ordem; ?></td>
                             <td>
-                                <button class="btn btn-sm btn-warning">Editar</button>
+                                <a href="<?php echo base_url('menus/editar/'.$item->id); ?>" class="btn btn-sm btn-warning">Editar</a>
                                 <button class="btn btn-sm btn-danger">Excluir</button>
                             </td>
                         </tr>

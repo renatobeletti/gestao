@@ -21,6 +21,7 @@ class Dashboard extends CI_Controller {
         $data['titulo'] = "Painel de Controle";
         $data['nome_usuario'] = $this->session->userdata('nome');
         $data['menus'] = $this->menu_model->obter_menu_usuario($user_id); // Busca os menus permitidos
+        $data['cores'] = $this->menu_model->obter_preferencias($uid); // Adicione isso!
         
         // Carregaremos a view em partes para facilitar a manutenção
         $this->load->view('includes/header', $data);

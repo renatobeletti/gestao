@@ -8,4 +8,8 @@ class Menu_model extends CI_Model {
         $this->db->order_by('menus.ordem', 'ASC');
         return $this->db->get()->result();
     }
+
+    public function obter_preferencias($usuario_id) {
+        return $this->db->get_where('preferencias_usuario', ['usuario_id' => $usuario_id])->row();
+    }
 }

@@ -51,4 +51,19 @@ class Menus extends CI_Controller {
             redirect('menus');
         }
     }
+
+    public function editar($id) {
+        $uid = $this->session->userdata('user_id');
+        $data['titulo'] = "Editar Menu";
+        $data['nome_usuario'] = $this->session->userdata('nome');
+        $data['menus'] = $this->menu_model->obter_menu_usuario($uid);
+        
+        // Busca o menu específico para editar
+        $data['menu_edicao'] = $this->db->get_where('menus', ['id' => $id])->row();
+        $data['pais'] = $this->db->get_where('menus', ['pai_id' => 0])->result();
+
+        $this->load->view('includes/header', $data);
+        $this->load->view('menus/formulario_edicao', $data); // Criaremos esta view
+        $this->load->view('includes/footer');
+    }
 }
