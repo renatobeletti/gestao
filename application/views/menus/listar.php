@@ -31,20 +31,6 @@
                                 <td><strong><i class="<?php echo $item->icone; ?> me-2"></i> <?php echo $item->titulo; ?></strong></td>
                                 <td><code>/<?php echo $item->url; ?></code></td>
                                 <td>Principal</td>
-                                <td>
-                                    <a href="<?php echo base_url('menus/editar/'.$item->id); ?>" class="btn btn-sm btn-warning">Editar</a>
-                                </td>
-                            </tr>
-
-                            <?php 
-                            $filhos_lista = array_filter($lista_menus, function($m) use ($item) { return $m->pai_id == $item->id; });
-                            foreach($filhos_lista as $sub): 
-                            ?>
-                            <tr>
-                                <td><?php echo $sub->id; ?></td>
-                                <td class="ps-4"> <i class="ti ti-corner-down-right text-muted me-2"></i> <?php echo $sub->titulo; ?></td>
-                                <td><code>/<?php echo $sub->url; ?></code></td>
-                                <td>Pai: <?php echo $item->titulo; ?></td>
                                 <td class="text-end">
                                     <div class="btn-list flex-nowrap">
                                         <a href="<?php echo base_url('menus/editar/'.$sub->id); ?>" class="btn btn-white btn-sm">
@@ -57,6 +43,17 @@
                                         </a>
                                     </div>
                                 </td>
+                            </tr>
+
+                            <?php 
+                            $filhos_lista = array_filter($lista_menus, function($m) use ($item) { return $m->pai_id == $item->id; });
+                            foreach($filhos_lista as $sub): 
+                            ?>
+                            <tr>
+                                <td><?php echo $sub->id; ?></td>
+                                <td class="ps-4"> <i class="ti ti-corner-down-right text-muted me-2"></i> <?php echo $sub->titulo; ?></td>
+                                <td><code>/<?php echo $sub->url; ?></code></td>
+                                <td>Pai: <?php echo $item->titulo; ?></td>
                             </tr>
                             <?php endforeach; ?>
                         <?php endforeach; ?>
