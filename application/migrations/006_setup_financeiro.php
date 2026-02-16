@@ -31,11 +31,12 @@ class Migration_Setup_financeiro extends CI_Migration {
             'parcela_atual' => ['type' => 'INT', 'default' => 1],
             'total_parcelas' => ['type' => 'INT', 'default' => 1],
             'status' => ['type' => 'ENUM("aberto", "pago", "atrasado")', 'default' => 'aberto'],
-            'comprovante' => ['type' => 'VARCHAR', 'constraint' => '255', 'null' => true], // Caminho do arquivo
-            'recorrente' => ['type' => 'TINYINT', 'constraint' => 1, 'default' => 0], // Assinaturas
-            'hash_grupo' => ['type' => 'VARCHAR', 'constraint' => '50', 'null' => true], // Para agrupar parcelas
-            'created_at' => ['type' => 'DATETIME', 'default' => 'CURRENT_TIMESTAMP'],
+            'comprovante' => ['type' => 'VARCHAR', 'constraint' => '255', 'null' => true],
+            'recorrente' => ['type' => 'TINYINT', 'constraint' => 1, 'default' => 0],
+            'hash_grupo' => ['type' => 'VARCHAR', 'constraint' => '50', 'null' => true],
         ]);
+        // Adicionamos o campo de data manualmente para evitar o erro de sintaxe do driver
+        $this->dbforge->add_field("created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP");
         $this->dbforge->add_key('id', true);
         $this->dbforge->create_table('contas_pagar');
     }
