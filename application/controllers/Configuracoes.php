@@ -22,18 +22,14 @@ class Configuracoes extends CI_Controller {
     public function salvar_cores() {
         $uid = $this->session->userdata('user_id');
         $dados = [
-            'usuario_id' => $uid,
-            'cor_primaria' => $this->input->post('cor_primaria'),
-            'cor_sidebar' => $this->input->post('cor_sidebar')
+            'usuario_id'         => $uid,
+            'cor_primaria'       => $this->input->post('cor_primaria'),
+            'cor_sidebar'        => $this->input->post('cor_sidebar'),
+            'cor_texto_sidebar'  => $this->input->post('cor_texto_sidebar'),
+            'cor_fundo_pagina'   => $this->input->post('cor_fundo_pagina')
         ];
 
-        $existe = $this->db->get_where('preferencias_usuario', ['usuario_id' => $uid])->row();
-        
-        if ($existe) {
-            $this->db->where('usuario_id', $uid)->update('preferencias_usuario', $dados);
-        } else {
-            $this->db->insert('preferencias_usuario', $dados);
-        }
+        $this->db->replace('preferencias_usuario', $dados); // replace() faz insert ou update automaticamente
         redirect('configuracoes');
     }
 }

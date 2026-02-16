@@ -1,22 +1,32 @@
-<div class="page-body">
-    <div class="container-xl">
+<div class="row row-cards">
+    <div class="col-md-6">
         <div class="card">
-            <div class="card-header"><h3 class="card-title">Minha Identidade Visual</h3></div>
-            <form action="<?php echo base_url('configuracoes/salvar_cores'); ?>" method="post">
-                <div class="card-body">
-                    <div class="mb-3">
-                        <label class="form-label">Cor dos Botões e Links</label>
-                        <input type="color" name="cor_primaria" class="form-control form-control-color" value="<?php echo $cores->cor_primaria ?? '#206bc4'; ?>">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Cor do Menu Lateral</label>
-                        <input type="color" name="cor_sidebar" class="form-control form-control-color" value="<?php echo $cores->cor_sidebar ?? '#1b2431'; ?>">
-                    </div>
+            <div class="card-header"><h3 class="card-title">Cores da Interface</h3></div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label">Destaque (Botões/Links)</label>
+                    <input type="color" name="cor_primaria" class="form-control form-control-color w-100" value="<?php echo $cores->cor_primaria ?? '#206bc4'; ?>">
                 </div>
-                <div class="card-footer text-end">
-                    <button type="submit" class="btn btn-primary">Aplicar Cores</button>
+                <div class="mb-3">
+                    <label class="form-label">Fundo da Página</label>
+                    <input type="color" name="cor_fundo_pagina" class="form-control form-control-color w-100" value="<?php echo $cores->cor_fundo_pagina ?? '#f4f6fa'; ?>">
                 </div>
-            </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header"><h3 class="card-title">Menu Lateral</h3></div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label">Fundo do Menu</label>
+                    <input type="color" name="cor_sidebar" class="form-control form-control-color w-100" value="<?php echo $cores->cor_sidebar ?? '#1b2431'; ?>">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Texto do Menu</label>
+                    <input type="color" name="cor_texto_sidebar" class="form-control form-control-color w-100" value="<?php echo $cores->cor_texto_sidebar ?? '#ffffff'; ?>">
+                </div>
+            </div>
         </div>
     </div>
 </div>

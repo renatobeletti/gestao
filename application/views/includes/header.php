@@ -6,13 +6,22 @@
     <title><?php echo $titulo; ?> - Gestão Beletti</title>
     <link href="<?php echo base_url('assets/tabler/css/tabler.min.css'); ?>" rel="stylesheet"/>
     <style>
-        :root {
-            --tblr-primary: <?php echo $cores->cor_primaria ?? '#206bc4'; ?>;
-        }
-        .navbar-vertical {
-            background-color: <?php echo $cores->cor_sidebar ?? '#1b2431'; ?> !important;
-        }
-    </style>
+      :root {
+          --tblr-primary: <?php echo $cores->cor_primaria ?? '#206bc4'; ?>;
+          --tblr-bg-surface: <?php echo $cores->cor_fundo_pagina ?? '#f4f6fa'; ?>;
+      }
+      
+      .navbar-vertical {
+          background-color: <?php echo $cores->cor_sidebar ?? '#1b2431'; ?> !important;
+          color: <?php echo $cores->cor_texto_sidebar ?? '#ffffff'; ?> !important;
+      }
+
+      .navbar-vertical .nav-link {
+          color: <?php echo $cores->cor_texto_sidebar ?? 'rgba(255,255,255,0.7)'; ?> !important;
+      }
+      
+      body { background-color: var(--tblr-bg-surface); }
+  </style>
   </head>
   <body>
     <aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
