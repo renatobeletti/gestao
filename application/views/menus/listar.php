@@ -36,13 +36,14 @@
                                 <td><?php echo $item->ordem; ?></td>
                                 <td class="text-end">
                                     <div class="btn-list flex-nowrap justify-content-end">
-                                        <a href="<?php echo base_url('menus/editar/'.$item->id); ?>" class="btn btn-warning btn-sm">
-                                            <i class="ti ti-edit icon"></i> Editar
+                                        <a href="<?php echo base_url('menus/editar/'.$item->id); ?>" class="btn btn-warning btn-sm d-none d-sm-inline-flex align-items-center">
+                                            <i class="ti ti-edit me-2"></i> Editar
                                         </a>
+                                        
                                         <a href="<?php echo base_url('menus/eliminar/'.$item->id); ?>" 
-                                           class="btn btn-danger btn-sm" 
-                                           onclick="return confirm('Deseja realmente excluir este menu principal e suas permissões?')">
-                                            <i class="ti ti-trash icon"></i> Excluir
+                                           class="btn btn-danger btn-sm d-none d-sm-inline-flex align-items-center" 
+                                           onclick="return confirm('Deseja realmente excluir?')">
+                                            <i class="ti ti-trash me-2"></i> Excluir
                                         </a>
                                     </div>
                                 </td>
@@ -62,13 +63,14 @@
                                     <td><?php echo $sub->ordem; ?></td>
                                     <td class="text-end">
                                         <div class="btn-list flex-nowrap justify-content-end">
-                                            <a href="<?php echo base_url('menus/editar/'.$sub->id); ?>" class="btn btn-warning btn-sm">
-                                                <i class="ti ti-edit icon"></i> Editar
+                                            <a href="<?php echo base_url('menus/editar/'.$item->id); ?>" class="btn btn-warning btn-sm d-none d-sm-inline-flex align-items-center">
+                                                <i class="ti ti-edit me-2"></i> Editar
                                             </a>
-                                            <a href="<?php echo base_url('menus/eliminar/'.$sub->id); ?>" 
-                                               class="btn btn-danger btn-sm" 
-                                               onclick="return confirm('Deseja realmente excluir este submenu?')">
-                                                <i class="ti ti-trash icon"></i> Excluir
+                                            
+                                            <a href="<?php echo base_url('menus/eliminar/'.$item->id); ?>" 
+                                               class="btn btn-danger btn-sm d-none d-sm-inline-flex align-items-center" 
+                                               onclick="return confirm('Deseja realmente excluir?')">
+                                                <i class="ti ti-trash me-2"></i> Excluir
                                             </a>
                                         </div>
                                     </td>
