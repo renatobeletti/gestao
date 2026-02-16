@@ -30,8 +30,8 @@ class Auth extends CI_Controller {
             $this->session->set_userdata('user_id', $user->id);
             $this->session->set_userdata('nome', $user->nome);
 
-            echo "<h1>Sucesso! Bem-vindo, " . $user->nome . "</h1>";
-            // No futuro: redirect('dashboard');
+            // echo "<h1>Sucesso! Bem-vindo, " . $user->nome . "</h1>";
+            redirect('dashboard');
         } else {
             echo "<h1>Erro: Usuário ou senha inválidos!</h1>";
             // No futuro: redirect('auth?erro=1');
