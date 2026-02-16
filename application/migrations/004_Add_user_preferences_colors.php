@@ -1,5 +1,5 @@
 <?php
-class Migration_Add_user_preferences extends CI_Migration {
+class Migration_Add_user_preferences_colors extends CI_Migration {
     public function up() {
         $this->dbforge->add_field([
             'id' => ['type' => 'INT', 'constraint' => 11, 'unsigned' => TRUE, 'auto_increment' => TRUE],
