@@ -38,7 +38,9 @@ class Contas_pagar extends CI_Controller {
     }
 
     public function salvar() {
+        $valor_total = $this->input->post('valor_total');
         $total_parcelas = $this->input->post('total_parcelas') ?: 1;
+        $valor_parcela = $valor_total / $total_parcelas;
         $vencimento_inicial = $this->input->post('vencimento');
         $hash = md5(uniqid(rand(), true)); // Identifica o grupo de parcelas
 
@@ -47,7 +49,9 @@ class Contas_pagar extends CI_Controller {
                 'fornecedor_id'   => $this->input->post('fornecedor_id'),
                 'conta_origem_id' => $this->input->post('conta_origem_id'),
                 'descricao'       => $this->input->post('descricao'),
-                'valor_total'     => $this->input->post('valor_total') / $total_parcelas,
+                'valor_total' => $valor_parcela, // Gravamos o valor de CADA parcela
+                'chave_pix' => $this->input->post('chave_pix'),
+                'debito_automatico' => $this->input->post('debito_automatico') ? 1 : 0,
                 'vencimento'      => date('Y-m-d', strtotime("+" . ($i - 1) . " month", strtotime($vencimento_inicial))),
                 'parcela_atual'   => $i,
                 'total_parcelas'  => $total_parcelas,
