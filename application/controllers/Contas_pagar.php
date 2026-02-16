@@ -18,6 +18,25 @@ class Contas_pagar extends CI_Controller {
         $this->load->view('includes/footer');
     }
 
+    public function formulario($id = null) {
+        $uid = $this->session->userdata('user_id');
+        
+        // Precisamos buscar fornecedores e contas para preencher os selects do form
+        $data = [
+            'titulo' => $id ? 'Editar Conta' : 'Novo Lançamento',
+            'nome_usuario' => $this->session->userdata('nome'),
+            'menus' => $this->menu_model->obter_menu_usuario($uid),
+            'cores' => $this->preferencia_model->obter_por_usuario($uid),
+            'fornecedores' => $this->fornecedor_model->listar(),
+            'contas' => $this->conta_origem_model->listar(),
+            'despesa' => $id ? $this->financeiro_model->obter_despesa($id) : null
+        ];
+
+        $this->load->view('includes/header', $data);
+        $this->load->view('financeiro/contas_pagar_form', $data);
+        $this->load->view('includes/footer');
+    }
+
     public function salvar() {
         $total_parcelas = $this->input->post('total_parcelas') ?: 1;
         $vencimento_inicial = $this->input->post('vencimento');
