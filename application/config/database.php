@@ -78,7 +78,7 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	'username' => 'usr_gestao',
 	'password' => 'Ht]ecwmO1hLQ8rGu={Nttn]D[uRwlg^!',
-	'database' => 'gestao',
+	'database' => 'gestao_db',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
